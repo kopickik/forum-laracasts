@@ -1,0 +1,1 @@
+[https://laracasts.com/series/lets-build-a-forum-with-laravel/episodes/2](https://laracasts.com/series/lets-build-a-forum-with-laravel/episodes/2)
