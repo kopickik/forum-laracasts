@@ -25,4 +25,10 @@ class ThreadsTest extends TestCase {
       ->assertSee($this->thread->title);
   }
 
+  public function test_a_user_can_view_replies_to_a_thread() {
+    $reply = factory('App\Reply')->create(['thread_id' => $this->thread->id]);
+    $this->get('/threads/' . $this->thread->id)
+      ->assertSee($reply->body);
+  }
+
 }
