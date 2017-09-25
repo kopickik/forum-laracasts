@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Forum\Http\Controllers;
 
-use App\Thread;
+use Forum\Thread;
 use Illuminate\Http\Request;
 
 class ThreadsController extends Controller
@@ -42,7 +42,7 @@ class ThreadsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Thread  $thread
+     * @param  \Forum\Thread  $thread
      * @return \Illuminate\Http\Response
      */
     public function show(Thread $thread)
@@ -53,7 +53,7 @@ class ThreadsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Thread  $thread
+     * @param  \Forum\Thread  $thread
      * @return \Illuminate\Http\Response
      */
     public function edit(Thread $thread)
@@ -65,7 +65,7 @@ class ThreadsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Thread  $thread
+     * @param  \Forum\Thread  $thread
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Thread $thread)
@@ -76,7 +76,7 @@ class ThreadsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Thread  $thread
+     * @param  \Forum\Thread  $thread
      * @return \Illuminate\Http\Response
      */
     public function destroy(Thread $thread)
