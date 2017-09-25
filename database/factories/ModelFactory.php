@@ -2,24 +2,24 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(Forum\Thread::class, function (Faker $faker) {
+$factory->define(App\Thread::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence,
         'body' => $faker->paragraph,
         'user_id' => function () {
-          return factory('Forum\User')->create()->id;
+          return factory('App\User')->create()->id;
         }
     ];
 });
 
-$factory->define(Forum\Reply::class, function (Faker $faker) {
+$factory->define(App\Reply::class, function (Faker $faker) {
     return [
         'body' => $faker->paragraph,
         'user_id' => function () {
-            return factory('Forum\User')->create()->id;
+            return factory('App\User')->create()->id;
         },
         'thread_id' => function () {
-            return factory('Forum\Thread')->create()->id;
+            return factory('App\Thread')->create()->id;
         }
     ];
 });

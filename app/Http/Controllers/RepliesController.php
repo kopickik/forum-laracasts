@@ -1,8 +1,8 @@
 <?php
 
-namespace Forum\Http\Controllers;
+namespace App\Http\Controllers;
 
-use Forum\Thread;
+use App\Thread;
 
 class RepliesController extends Controller
 {
