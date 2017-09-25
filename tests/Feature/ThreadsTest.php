@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ThreadsTest extends TestCase {
   use DatabaseMigrations;
+  protected $thread;
 
   public function setUp() {
     parent::setUp();
