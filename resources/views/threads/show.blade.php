@@ -5,7 +5,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">{{ $thread->title }}</div>
+                <div class="panel-heading">{{ $thread->title }}
+                    <small>posted by {{ $thread->creator->name }} on {{ $thread->created_at }}</small>
+                </div>
                 <div class="panel-body">{{ $thread->body }}</div>
             </div>
         </div>
@@ -19,7 +21,7 @@
             <form action="{{ $thread->path() . '/replies' }}" method="POST">
             {{ csrf_field() }}
                 <div class="form-group">
-                    <textarea 
+                    <textarea
                         name="body" id="body"
                         class="form-control"
                         rows="5"
