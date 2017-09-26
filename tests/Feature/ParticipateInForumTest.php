@@ -20,10 +20,10 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     function an_authenticated_user_may_participate_in_forum_threads()
     {
-        $this->be($user = factory('App\User')->create());
+        $this->signIn();
 
-        $thread = factory('App\Thread')->create();
-        $reply = factory('App\Reply')->make();
+        $thread = create('App\Thread');
+        $reply = make('App\Reply');
 
         $this->post($thread->path() . '/replies', $reply->toArray());
         $this->get($thread->path())->assertSee($reply->body);
