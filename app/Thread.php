@@ -52,4 +52,14 @@ class Thread extends Model
     {
         $this->replies()->create($reply);
     }
+
+    /**
+    * A thread is assigned a channel.
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+    public function channel()
+    {
+        return $this->belongsTo(Channel::class);
+    }
 }

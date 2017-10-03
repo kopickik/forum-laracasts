@@ -50,4 +50,10 @@ class ThreadsTest extends TestCase {
     $this->assertCount(1, $this->thread->replies);
   }
 
+  /** @test */
+  function a_thread_belongs_to_a_channel()
+  {
+    $this->assertInstanceOf('App\Channel', $this->thread->channel);
+  }
+
 }

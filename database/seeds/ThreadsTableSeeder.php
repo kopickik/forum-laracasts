@@ -11,9 +11,9 @@ class ThreadsTableSeeder extends Seeder
      */
     public function run()
     {
-        $threads = factory('App\Thread', 12)->create();
+        $threads = factory('App\Thread', 6)->create();
         $threads->each(function($t) {
-            factory('App\Reply', 5)->create(['thread_id' => $t->id]);
+            factory('App\Reply', rand(0, 3))->create(['thread_id' => $t->id]);
         });
     }
 }
