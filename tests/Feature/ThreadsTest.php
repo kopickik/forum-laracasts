@@ -41,7 +41,7 @@ class ThreadsTest extends TestCase {
   }
 
   /** @test */
-  function a_thread_can_add_a_reply()
+  public function a_thread_can_add_a_reply()
   {
     $this->thread->addReply([
       'body' => 'Foobar',

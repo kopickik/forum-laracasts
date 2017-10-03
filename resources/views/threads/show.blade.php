@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">{{ $thread->title }}
-                    <small>posted by {{ $thread->creator->name }} on {{ $thread->created_at }}</small>
+                    <small>posted by {{ $thread->creator->name }} on {{ $thread->created_at->format('l M jS Y') }}</small>
                 </div>
                 <div class="panel-body">{{ $thread->body }}</div>
             </div>
