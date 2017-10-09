@@ -15,23 +15,6 @@ class ThreadsTest extends TestCase {
     $this->thread = create('App\Thread');
   }
 
-  public function test_a_user_can_browse_threads() {
-    $this->get('threads')
-      ->assertStatus(200)
-      ->assertSee($this->thread->title);
-  }
-  
-  public function test_a_user_can_browse_a_single_thread() {
-    $this->get("/threads/" . $this->thread->channel->slug . '/' . $this->thread->id)
-      ->assertSee($this->thread->title);
-  }
-
-  public function test_a_user_can_view_replies_to_a_thread() {
-    $reply = create('App\Reply',['thread_id' => $this->thread->id]);
-    $this->get($this->thread->path())
-      ->assertSee($reply->body);
-  }
-
   public function test_a_thread_has_replies() {
     $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $this->thread->replies);
   }
