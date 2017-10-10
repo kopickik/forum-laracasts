@@ -5,10 +5,13 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">{{ $thread->title }}
+                <div class="panel-heading">
+                    <div class="h2">{{ $thread->title }}</div>
                     <small>posted by {{ $thread->creator->name }} on {{ $thread->created_at->format('l M jS Y') }}</small>
                 </div>
                 <div class="panel-body">{{ $thread->body }}</div>
+                <pre>{{$thread->toJSON()}}
+                </pre>
             </div>
         </div>
         @foreach ($thread->replies as $reply)
