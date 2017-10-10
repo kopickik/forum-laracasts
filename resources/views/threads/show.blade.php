@@ -3,25 +3,38 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+
+        <div class="col-md-8 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="h2">{{ $thread->title }}</div>
                     <small>posted by {{ $thread->creator->name }} on {{ $thread->created_at->format('l M jS Y') }}</small>
                 </div>
                 <div class="panel-body">{{ $thread->body }}</div>
-                <pre>{{$thread->toJSON()}}
-                </pre>
             </div>
         </div>
-        @foreach ($thread->replies as $reply)
+
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Some stats about this post:</h4>
+                    <dl>
+                    <dt>Reply count:</dt>
+                    <dd>{{ $thread->replies_count }}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        @foreach ($replies as $reply)
             @include('threads.reply')
         @endforeach
-    </div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+
+        <div class="col-md-8 col-md-offset-1 text-center">{{ $replies->links() }}</div>
+
+        <div class="col-md-8 col-md-offset-1">
         @if (auth()->check())
-            <form action="{{ $thread->path() . '/replies' }}" method="POST">
+            <form action="{{ $thread->path() . '/replies' }}" method="POST" class="form">
             {{ csrf_field() }}
                 <div class="form-group">
                     <textarea
