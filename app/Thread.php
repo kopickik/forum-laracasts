@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Filters\ThreadsFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
@@ -54,6 +56,18 @@ class Thread extends Model
     }
 
     /**
+     * Apply all relevant thread filters.
+     * 
+     * @param Builder $query
+     * @param ThreadsFilter $filters
+     * @return Builder
+     */
+    public function scopeFilter($query, ThreadsFilter $filters)
+    {
+        return $filters->apply($query);
+    }
+
+    /**
     * A thread is assigned a channel.
     *
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -62,4 +76,5 @@ class Thread extends Model
     {
         return $this->belongsTo(Channel::class);
     }
+
 }
