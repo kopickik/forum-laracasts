@@ -16,15 +16,14 @@ Route::get('/', function () {
 });
 Auth::routes();
 
+// Use order of importance, as more specific routes will act first.
+Route::get('threads/create', 'ThreadsController@create');
+Route::get('threads/{channel?}', 'ThreadsController@index')->name('threads.index');
+Route::get('threads/{channel}/{thread}', 'ThreadsController@show');
 
-Route::get('/threads/create', 'ThreadsController@create');
-Route::get('/threads/{channel?}', 'ThreadsController@index')->name('threads.index');
-Route::get('/threads/{channel}/{thread}', 'ThreadsController@show');
+Route::post('threads', 'ThreadsController@store');
+Route::post('threads/{channel}/{thread}/replies', 'RepliesController@store');
 
-Route::post('/threads', 'ThreadsController@store');
-Route::post('/threads/{channel}/{thread}/replies', 'RepliesController@store');
-
-// Route::get('/threads/{thread}', 'ThreadsController@show')->name('threads.show');
-// Route::resource('/threads', 'ThreadsController');
-Route::get('/home', 'HomeController@index')->name('home');
-// Route::post('/threads/{thread}/replies', 'RepliesController@store');
+// Route::get('threads/{thread}', 'ThreadsController@show')->name('threads.show');
+// Route::resource('threads', 'ThreadsController');
+Route::get('home', 'HomeController@index')->name('home');
