@@ -9,6 +9,10 @@
           <div class="panel-body">
             @foreach($threads as $thread)
             <article>
+              <div class="pull-right">
+                <small>{{$thread->replies_count}}
+                {{str_plural('reply', $thread->replies_count)}}</small>
+              </div>
               <h4 class="mb0"><a href="{{ url($thread->path()) }}">{{$thread->title}}</a>
               </h4>
               <small>posted by {{$thread->creator->name}} {{$thread->created_at->diffForHumans()}}</small>
