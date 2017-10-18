@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Carbon;
 
 class ReadsThreadsTest extends TestCase
 {
@@ -64,10 +65,10 @@ class ReadsThreadsTest extends TestCase
     /** @test */
     function a_user_can_filter_threads_by_popularity()
     {
-        $threadWithTwoReplies = create('App\Thread');
+        $threadWithTwoReplies = create('App\Thread', ['created_at' => new Carbon('-2 minute')]);
         create('App\Reply', ['thread_id' => $threadWithTwoReplies->id], 2);
 
-        $threadWithThreeReplies = create('App\Thread');
+        $threadWithThreeReplies = create('App\Thread', ['created_at' => new Carbon('-1 minute')]);
         create('App\Reply', ['thread_id' => $threadWithThreeReplies->id], 3);
 
         $threadWithNoReplies = $this->thread;
