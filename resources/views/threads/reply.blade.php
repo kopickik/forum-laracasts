@@ -2,7 +2,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             {{ $reply->created_at->diffForHumans() }},
-            <a href="#">{{$reply->owner->name}}</a> said
+            <a href="{{route('profile', $reply->owner->name)}}">{{$reply->owner->name}}</a> said
             <div class="pull-right">
                 <form method="POST" action="/replies/{{$reply->id}}/favorites">
                     {{ csrf_field() }}
