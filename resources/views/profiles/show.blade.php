@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-1">
             <div class="page-header">
+            <img src="{{$profileUser->avatar}}" alt="{{$profileUser->avatar}}" class="img pull-left">
                 <h1>
                     {{ $profileUser->name }}
                     <small>since {{ $profileUser->created_at->diffForHumans() }}</small>
