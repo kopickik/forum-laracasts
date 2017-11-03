@@ -10,10 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('home');
-});
+Route::view('/', 'home');
 Auth::routes();
 
 // Use order of importance, as more specific routes will act first.
