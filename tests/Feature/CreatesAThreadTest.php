@@ -47,9 +47,12 @@ class CreatesAThreadTest extends TestCase
     /** @test */
     function an_authenticated_user_can_delete_threads()
     {
-        $user = $this->signIn();
-        $thread = make('App\Thread', ['user_id'=>$user->id]);
+        $this->signIn();
+
+        $thread = make('App\Thread');
+
         $this->json('DELETE', $thread->path);
+
         $this->assertDatabaseMissing('threads', $thread->toArray());
     }
 
