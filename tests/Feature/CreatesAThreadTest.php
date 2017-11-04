@@ -49,11 +49,15 @@ class CreatesAThreadTest extends TestCase
     {
         $this->signIn();
 
-        $thread = make('App\Thread');
+        $thread = create('App\Thread');
+        $reply = create('App\Reply', ['thread_id' => $thread->id]);
 
-        $this->json('DELETE', $thread->path);
+        $response = $this->json('DELETE', $thread->path());
 
-        $this->assertDatabaseMissing('threads', $thread->toArray());
+        $response->assertStatus(200);
+
+        $this->assertDatabaseMissing('threads', ['id' => $thread->id]);
+        $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
     }
 
     /** @test */
