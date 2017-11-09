@@ -2,6 +2,7 @@
 
 Route::view('/', 'home');
 Auth::routes();
+Route::get('home', 'HomeController@index')->name('home');
 
 // Use order of importance, as more specific routes will act first.
 Route::get('threads/create', 'ThreadsController@create');
@@ -18,4 +19,3 @@ Route::get('profiles/{user}', 'ProfilesController@show')->name('profile');
 
 // Route::get('threads/{thread}', 'ThreadsController@show')->name('threads.show');
 // Route::resource('threads', 'ThreadsController');
-// Route::get('home', 'HomeController@index')->name('home');
