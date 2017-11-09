@@ -22,6 +22,15 @@ class CreatesAThreadTest extends TestCase
     }
 
     /** @test */
+    function a_guest_cannot_delete_threads()
+    {
+        $thread = make('App\Thread');
+        $this->withExceptionHandling()
+            ->delete($thread->path())
+            ->assertRedirect('/login');
+    }
+
+    /** @test */
     function guests_cannot_see_the_create_thread_page()
     {
         $this->withExceptionHandling()
@@ -54,7 +63,7 @@ class CreatesAThreadTest extends TestCase
 
         $response = $this->json('DELETE', $thread->path());
 
-        $response->assertStatus(200);
+        $response->assertStatus(204);// success, no content
 
         $this->assertDatabaseMissing('threads', ['id' => $thread->id]);
         $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
