@@ -1,23 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    Some content for the homepage.
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="redwoods">
+    <h1 class="hm-home-h1">Spoonfedweb welcomes you.</h1>
 </div>
 @endsection

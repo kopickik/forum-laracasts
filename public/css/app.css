@@ -8373,6 +8373,12 @@ button.close {
   margin-bottom: 0;
 }
 
+.centerX {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
 body {
   padding-bottom: 5em;
   font-family: "Raleway", "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -8448,6 +8454,27 @@ h6,
   .h6 {
     font-size: 1.1em;
   }
+}
+
+.navbar {
+  min-height: 4em;
+  margin-bottom: 0;
+}
+
+.redwoods {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 150vh;
+  width: 150vw;
+  overflow: hidden;
+  background-image: url(/images/redwoods-min.jpg?472fb65760f0bdafa149f925ad225612);
+  background-position: -360px -890px;
+  background-size: cover;
+}
+
+.hm-home-h1 {
+  color: lime;
 }
 
 .panel-heading.h2 {
