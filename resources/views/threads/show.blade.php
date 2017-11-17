@@ -12,7 +12,7 @@
                     <a href="{{route('profile', $thread->creator)}}">
                         {{ $thread->creator->name }}
                     </a> on {{ $thread->created_at->format('l M jS Y') }}</small>
-                    @if (Auth::check())
+                    @can ('update', $thread)
                         <form class="mla" action="{{$thread->path()}}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
@@ -20,7 +20,7 @@
                                 <button type="submit" class="btn btn-sm">Delete thread</button>
                             </small>
                         </form>
-                    @endif
+                    @endcan
                     </div>
                 </div>
                 <div class="panel-body">{{ $thread->body }}</div>
