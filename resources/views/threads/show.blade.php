@@ -7,10 +7,21 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="h2">{{ $thread->title }}</div>
+                    <div class="level">
                     <small>posted by&nbsp;
                     <a href="{{route('profile', $thread->creator)}}">
                         {{ $thread->creator->name }}
                     </a> on {{ $thread->created_at->format('l M jS Y') }}</small>
+                    @if (Auth::check())
+                        <form class="mla" action="{{$thread->path()}}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                            <small>
+                                <button type="submit" class="btn btn-sm">Delete thread</button>
+                            </small>
+                        </form>
+                    @endif
+                    </div>
                 </div>
                 <div class="panel-body">{{ $thread->body }}</div>
             </div>

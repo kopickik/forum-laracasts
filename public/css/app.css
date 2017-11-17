@@ -8359,10 +8359,12 @@ button.close {
           align-items: center;
 }
 
-.flex {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+.mla {
+  margin-left: auto;
+}
+
+.mr {
+  margin-right: 2em;
 }
 
 .mt0 {
