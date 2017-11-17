@@ -27,7 +27,9 @@ class CreatesAThreadTest extends TestCase
         $thread = make('App\Thread');
         $this->withExceptionHandling()
             ->delete($thread->path())
-            ->assertRedirect('/login');
+            ->assertStatus(405);
+        $this->signIn();
+        $this->delete($thread->path())->assertStatus(405);
     }
 
     /** @test */
@@ -58,7 +60,7 @@ class CreatesAThreadTest extends TestCase
     {
         $this->signIn();
 
-        $thread = create('App\Thread');
+        $thread = create('App\Thread', ['user_id' => auth()->id()]);
         $reply = create('App\Reply', ['thread_id' => $thread->id]);
 
         $response = $this->json('DELETE', $thread->path());
