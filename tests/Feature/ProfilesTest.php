@@ -20,13 +20,12 @@ class ProfilesTest extends TestCase
     }
 
     /** @test */
-    public function profiles_display_threads_associated_with_a_user()
+    public function profiles_display_activity_associated_with_a_user()
     {
         $user = create('App\User');
         $thread = create('App\Thread', ['user_id' => $user->id]);
 
         $this->get(route('profile', $user->name))
-             ->assertSee($thread->title)
-             ->assertSee($thread->body);
+            ->assertSee($user->name);
     }
 }

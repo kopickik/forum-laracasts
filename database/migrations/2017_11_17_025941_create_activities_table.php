@@ -15,10 +15,10 @@ class CreateActivitiesTable extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
-            $table->unsignedInteger('user_id')->nullable()->index();
+            $table->string('type', 50);
+            $table->unsignedInteger('user_id')->index();
             $table->unsignedInteger('subject_id')->index();
-            $table->string('subject_type');
+            $table->string('subject_type', 50);
             $table->timestamps();
         });
     }

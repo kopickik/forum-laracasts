@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Favoritable;
+use App\Traits\RecordsActivity;
 
 class Reply extends Model
 {
-    use Favoritable;
+    use Favoritable, RecordsActivity;
     /**
     * Don't auto-apply mass assignment protection.
     *
@@ -25,5 +26,15 @@ class Reply extends Model
     public function owner()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * A reply belongs to a thread.
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function thread ()
+    {
+        return $this->belongsTo(Thread::class);
     }
 }
