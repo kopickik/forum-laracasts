@@ -13,27 +13,13 @@
                 </h1>
             </div>
             @foreach ($activities as $date => $activity)
-                <h3 class="page-header">{{ $date }}</h3>
-                @foreach ($activity as $record)
-                    @include("profiles.activities.{$record->type}", ['activity' => $record])
-                @endforeach
-            @endforeach
-            @foreach ($threads as $thread)
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a href="{{$thread->path()}}">
-                        {{ $thread->title}}
-                        </a>
-                        <span class="pull-right">
-                            {{$thread->created_at->diffForHumans()}}
-                        </span>
-                    </div>
-                    <div class="panel-body">
-                        {{$thread->body}}
-                    </div>
+                <div class="ac-activity">
+                    <h3 class="page-header">{{ $date }}</h3>
+                    @foreach ($activity as $record)
+                        @include("profiles.activities.{$record->type}", ['activity' => $record])
+                    @endforeach
                 </div>
             @endforeach
-        {{$threads->links()}}
         </div>
     </div>
 </div>
