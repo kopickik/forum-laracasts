@@ -1,9 +1,9 @@
 @component('profiles.activities.activity')
   @slot('heading')
-    {{ $profileUser->name }} published
+    {{ $profileUser->name }} published&nbsp;
     <a href="{{ $activity->subject->path() }}">
       {{ $activity->subject->title }}
-    </a>
+    </a> <span class="mla">{{ $activity->created_at->diffForHumans() }}</span>
   @endslot
   @slot('body')
     {{ $activity->subject->body }}

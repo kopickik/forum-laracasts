@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Reply;
 
 class Activity extends Model
 {
@@ -40,6 +41,16 @@ class Activity extends Model
             ->groupBy(function ($activity) {
                 return $activity->created_at->format('Y-m-d');
             });
+    }
+
+    /**
+     * Get the favorited reply.
+     * 
+     * @param int $favoriteId
+     */
+    public function getFavoritedReply($favoriteId)
+    {
+        return Reply::with(['body'])->where(['id' => $favoriteId]);
     }
 
 }
