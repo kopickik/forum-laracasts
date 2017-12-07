@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Activity;
 
 class CreatesAThreadTest extends TestCase
 {
@@ -33,14 +34,6 @@ class CreatesAThreadTest extends TestCase
     }
 
     /** @test */
-    function guests_cannot_see_the_create_thread_page()
-    {
-        $this->withExceptionHandling()
-            ->get('/threads/create')
-            ->assertRedirect('/login');
-    }
-
-    /** @test */
     function an_authenticated_user_can_create_threads()
     {
         $this->signIn();
@@ -48,7 +41,6 @@ class CreatesAThreadTest extends TestCase
         $thread = make('App\Thread');
 
         $response = $this->post('/threads', $thread->toArray());
-        // dd($response);
 
         $this->get($response->headers->get('Location'))
             ->assertSee($thread->title)
@@ -69,6 +61,8 @@ class CreatesAThreadTest extends TestCase
 
         $this->assertDatabaseMissing('threads', ['id' => $thread->id]);
         $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
+
+        $this->assertEquals(0, Activity::count());
     }
 
     /** @test */

@@ -8492,7 +8492,12 @@ h6,
   line-height: 1.2em;
 }
 
+<<<<<<< HEAD
 .ac-activity-date {
   color: crimson;
+=======
+.ac-activity h3 {
+  color: #0e1a39;
+>>>>>>> develop
 }
 
