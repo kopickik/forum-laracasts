@@ -18,6 +18,8 @@ class ActivityTest extends TestCase
 
         $thread = create('App\Thread');
 
+        $foo = 'bar';
+
         $this->assertDatabaseHas('activities', [
             'type' => 'created_thread',
             'user_id' => auth()->id(),

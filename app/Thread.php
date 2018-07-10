@@ -34,6 +34,10 @@ class Thread extends Model
             $thread->replies->each->delete();
         });
 
+        static::created(function ($model) {
+            \Artisan::call('cache:clear');
+        });
+
     }
 
     /**
@@ -73,12 +77,16 @@ class Thread extends Model
      */
     public function addReply($reply)
     {
-        $this->replies()->create($reply);
+        $reply = $this->replies()->create($reply);
+
+        // event(new ThreadReceivedNewReply($reply));
+
+        return $reply;
     }
 
     /**
      * Apply all relevant thread filters.
-     * 
+     *
      * @param Builder $query
      * @param ThreadsFilter $filters
      * @return Builder

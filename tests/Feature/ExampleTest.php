@@ -20,4 +20,12 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function testBreakInApp() {
+        $response = $this->get('/threads');
+
+        $foo = 'bar';
+
+        $response->assertStatus(200);
+    }
 }
