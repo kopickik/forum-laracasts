@@ -29,7 +29,7 @@ class ThreadsController extends Controller {
             return $threads;
         }
 
-        return view('threads.index', compact('threads', 'channels'));
+        return view('threads.index', compact('threads'));
     }
 
     /**

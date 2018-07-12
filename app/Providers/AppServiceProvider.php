@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         if (app()->isLocal()) {
-            app()->register(\Barryvdh\Debugbar\ServiceProvider::class);
+            // app()->register(\Barryvdh\Debugbar\ServiceProvider::class);
         }
     }
 }

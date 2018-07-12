@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 
 class ThreadsTableSeeder extends Seeder
 {
@@ -11,7 +12,7 @@ class ThreadsTableSeeder extends Seeder
      */
     public function run()
     {
-        $threads = factory('App\Thread', 6)->create();
+        $threads = factory('App\Thread', 6)->create(['created_at' => Carbon::create()]);
         $threads->each(function($t) {
             factory('App\Reply', rand(0, 3))->create(['thread_id' => $t->id]);
         });

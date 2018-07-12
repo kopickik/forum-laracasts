@@ -40,7 +40,7 @@
                         @forelse ($channels as $channel)
                             <li><a href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
                         @empty
-                            <li><p>No Channels</p></li>
+                            <li><span>No Channels Yet</span></li>
                         @endforelse
                     </ul>
                 </li>
