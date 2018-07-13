@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Thread;
+use App\Reply;
 
 class RepliesController extends Controller
 {
@@ -24,6 +25,16 @@ class RepliesController extends Controller
             'body' => request('body'),
             'user_id' => auth()->id()
         ]);
+        return back();
+    }
+
+    public function destroy(Reply $reply)
+    {
+        if ($reply->id !== auth()->id()) {
+            return response([], 403);
+        }
+        $reply->delete();
+
         return back();
     }
 }

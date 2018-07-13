@@ -9,8 +9,17 @@ use App\Favorite;
 trait Favoritable
 {
     /**
+     * Boot the trait.
+     */
+    protected static function bootFavoritable(){
+        static::deleting(function ($model) {
+            $model->favorites->each->delete();
+        });
+    }
+
+    /**
      * An entity can be favorited.
-     * 
+     *
      * @return Illuminate\Database\Eloquent\Relationships\MorphMany
      */
     public function favorites()
@@ -33,6 +42,16 @@ trait Favoritable
     }
 
     /**
+     * Unfavorite the current entity.
+     */
+    public function unfavorite()
+    {
+        $attributes = ['user_id' => auth()->id()];
+
+        $this->favorites()->where($attributes)->get()->each->delete();
+    }
+
+    /**
      * Determine if the entity is favorited.
      *
      * @return boolean
@@ -40,6 +59,14 @@ trait Favoritable
     public function isFavorited()
     {
         return !! $this->favorites->where('user_id', auth()->id())->count();
+    }
+
+    /**
+     * Fetch the favorited status as a prop.
+     */
+    public function getIsFavoritedAttribute()
+    {
+        return $this->isFavorited();
     }
 
     /**

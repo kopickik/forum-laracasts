@@ -42,4 +42,17 @@ class ParticipateInForumTest extends TestCase
             ->assertSessionHasErrors('body');
     }
 
+    /** @test */
+    function an_authenticated_user_can_delete_their_own_replies() {
+        $reply = create('App\Reply');
+
+        $this->withExceptionHandling()
+            ->delete('/replies/{$reply->id}')
+            ->assertRedirect('/login');
+
+        $this->signIn()
+            ->delete('/replies/{$reply->id}')
+            ->assertStatus(403);// forbidden
+    }
+
 }
