@@ -16,5 +16,6 @@ class ThreadsTableSeeder extends Seeder
         $threads->each(function($t) {
             factory('App\Reply', rand(0, 3))->create(['thread_id' => $t->id]);
         });
+        \Artisan::call('cache:clear');
     }
 }
