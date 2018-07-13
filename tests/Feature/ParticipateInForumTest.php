@@ -43,16 +43,28 @@ class ParticipateInForumTest extends TestCase
     }
 
     /** @test */
-    function an_authenticated_user_can_delete_their_own_replies() {
+    function unauthenticated_users_cannot_delete_replies() {
+        $this->withExceptionHandling();
+
         $reply = create('App\Reply');
 
-        $this->withExceptionHandling()
-            ->delete('/replies/{$reply->id}')
-            ->assertRedirect('/login');
+        $this->delete("/replies/{$reply->id}")
+            ->assertRedirect('login');
 
         $this->signIn()
-            ->delete('/replies/{$reply->id}')
-            ->assertStatus(403);// forbidden
+            ->delete("/replies/{$reply->id}")
+            ->assertStatus(403);
+    }
+
+    /** @test */
+    function an_authenticated_user_can_delete_their_own_replies() {
+        $this->signIn();
+        $thread = create('App\Thread');
+        $reply = create('App\Reply', ['user_id' => auth()->id()]);
+
+        $this
+            ->delete("/replies/{$reply->id}")
+            ->assertStatus(302);// redirect
     }
 
 }

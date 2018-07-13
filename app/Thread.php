@@ -31,11 +31,8 @@ class Thread extends Model
         });
 
         static::deleting(function ($thread) {
+            $thread->activity()->delete();
             $thread->replies->each->delete();
-        });
-
-        static::created(function ($model) {
-            \Artisan::call('cache:clear');
         });
 
     }

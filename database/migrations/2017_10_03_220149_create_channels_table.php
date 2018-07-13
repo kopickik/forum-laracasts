@@ -13,6 +13,7 @@ class CreateChannelsTable extends Migration
      */
     public function up()
     {
+        \Cache::forget('channels');
         Schema::create('channels', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
