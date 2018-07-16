@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/trix/0.11.4/trix.js"></script>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">

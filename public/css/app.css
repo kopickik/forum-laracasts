@@ -8463,6 +8463,10 @@ h6,
   margin-bottom: 0;
 }
 
+.navbar.-default {
+  background-color: transparent;
+}
+
 .redwoods {
   display: -webkit-box;
   display: -ms-flexbox;

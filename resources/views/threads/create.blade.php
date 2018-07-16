@@ -11,7 +11,7 @@
           <div class="panel-body">
             <form class="form" action="/threads" method="POST">
               {{ csrf_field() }}
-              
+
               <div class="form-group">
                 <label for="title">Title:</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="">
@@ -25,12 +25,15 @@
                 <select name="channel_id" id="channel_id" class="form-control" required>
                 <option value="">Pick one..</option>
                 @foreach ($channels as $channel)
-                  <option 
+                  <option
                     value="{{ $channel->id }}"
                     {{old('channel_id') == $channel->id ? 'selected' : '' }}
                     >{{$channel->name }}
                   </option>
                 @endforeach
+                  <option
+                    value="no-channel"
+                    >No channel</option>
                 </select>
               </div>
               <div class="form-group">
