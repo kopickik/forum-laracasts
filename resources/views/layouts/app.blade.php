@@ -18,8 +18,10 @@
 <body>
     <div id="app">
         @include('layouts.nav')
-        <flash message="{{ session('flash') }}"></flash>
 
+        @if(Session::has('flash'))
+            <flash severity="{{ session('flash.severity') }}" message="{{ session('flash.message') }}"></flash>
+        @endif
         @yield('content')
     </div>
 

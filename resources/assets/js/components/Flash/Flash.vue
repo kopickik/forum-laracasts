@@ -1,22 +1,22 @@
 <template>
     <div
         id="alert-flash"
-        class="alert-flash alert alert-success"
+        class="alert-flash alert"
         role="alert"
         :class="'alert-'+severity"
         v-show="show"
-        v-text="body">
+        v-text="body"
+        >
     </div>
 </template>
 
 <script>
 export default {
-    props: ['message', ],
+    props: ['message', 'severity'],
     data () {
         return {
             icon: this.icon,
             body: this.message,
-            severity: 'info',
             show: false
         }
     },

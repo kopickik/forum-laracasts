@@ -39,7 +39,10 @@ class RepliesController extends Controller
         ]);
 
         return back()
-            ->with('flash', "Reply added to {$thread->title}.");
+            ->with('flash', [
+                'message' => "Reply added to {$thread->title}.",
+                'severity' => "success"
+            ]);
     }
 
     /**
@@ -69,7 +72,11 @@ class RepliesController extends Controller
             return response(['status' => 'Reply deleted.']);
         }
 
-        return back();
+        return back()
+            ->with('flash', [
+                'severity' => 'danger',
+                'message' => 'Reply removed.'
+            ]);
     }
 
 }
